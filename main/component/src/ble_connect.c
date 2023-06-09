@@ -114,7 +114,7 @@ const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] =
     {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&CHAR_ID2_UUID, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE | ESP_GATT_PERM_READ_ENC_MITM,
       ID_LEN, sizeof(char2_value), (uint8_t *)char2_value}},
 
-       /* Characteristic User Descriptor */
+    /* Characteristic User Descriptor */
     [IDX_CHAR_CFG_B]  =
     {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_user_description, ESP_GATT_PERM_READ,
       sizeof(char2_name), sizeof(char2_name), (uint8_t *)char2_name}},
@@ -405,7 +405,7 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
                 if (param->write.need_rsp){
                     esp_ble_gatts_send_response(gatts_if, param->write.conn_id, param->write.trans_id, ESP_GATT_OK, NULL);
                 }
-                ssd1306_display_ID(char1_value, char2_value, char3_value);
+                // ssd1306_display_ID(char1_value, char2_value, char3_value);
             }else{
                 /* handle prepare write */
                 ESP_LOGI(TAG, "ESP_GATTS_WRITE_EVT2");

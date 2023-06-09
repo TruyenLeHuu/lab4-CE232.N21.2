@@ -76,7 +76,7 @@ void receive_mqtt_data(data_t data)
     {
         xTaskCreatePinnedToCore(change_mode_WtoB_task, "change_mode_WtoB_task", 4096, NULL, 5, NULL, tskNO_AFFINITY);
     }
-    ssd1306_display_ID(char1_value, char2_value, char3_value);
+    // ssd1306_display_ID(char1_value, char2_value, char3_value);
 }
 void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data)
 {
@@ -148,7 +148,6 @@ bool mqtt_client_publish(MQTT_Handler_Struct *mqtt_t, char *topic, char *publish
 void mqtt_init_start(MQTT_Handler_Struct *mqtt_t)
 {
     mqtt_t->client = esp_mqtt_client_init(mqtt_t->mqtt_cfg);
-    /* The last argument may be used to pass data to the event handler, in this example mqtt_event_handler */
     esp_mqtt_client_register_event(mqtt_t->client, ESP_EVENT_ANY_ID, mqtt_event_handler, mqtt_t);
     esp_mqtt_client_start(mqtt_t->client);
 }

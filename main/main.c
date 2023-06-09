@@ -52,20 +52,14 @@ void app_main(void)
         ret = nvs_flash_init();
     }
     ESP_ERROR_CHECK( ret );
-
-    ESP_ERROR_CHECK( i2c_master_init() );
-
-    ssd1306_init();
-
-    ssd1306_display_clear();
-
+    /* Initialize the underlying TCP/IP stack */
     ESP_ERROR_CHECK(esp_netif_init());
-
+    /* Create default event loop */
     ESP_ERROR_CHECK(esp_event_loop_create_default());
-
+    /* Creates default WIFI STA */
     esp_netif_create_default_wifi_sta();
-
+    /* Release bt controller memory */ 
     ESP_ERROR_CHECK(esp_bt_controller_mem_release(ESP_BT_MODE_CLASSIC_BT));
-
+    /* Initialize ble */
     ble_init_enable();
 }
